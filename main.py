@@ -3,22 +3,24 @@ import logging
 from aiogram import Bot, Dispatcher, executor
 from aiogram.types import Message
 
+import settings
+
 from app.api.api import WikipediaApi
 from app.controller import ApiController
-from settings import TOKEN
+
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-bot = Bot(token=TOKEN)
+bot = Bot(token=settings.TOKEN)
 dispatcher = Dispatcher(bot)
 
-controller = ApiController(WikipediaApi("ru"))
+controller = ApiController(WikipediaApi(settings.LANG))
 
 
 @dispatcher.message_handler(commands=["start", "help"])
 async def help_handler(message: Message):
-    await message.reply("Hello world")
+    await message.reply("Wikipedia simple searching TG bot")
 
 
 @dispatcher.message_handler()

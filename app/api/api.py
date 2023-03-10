@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 
 class WikipediaApi(Api):
-    def __init__(self, lang: str = "ru") -> None:
+    def __init__(self, lang: str) -> None:
         self._lang = lang
 
     @property
